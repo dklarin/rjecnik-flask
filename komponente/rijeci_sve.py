@@ -31,9 +31,7 @@ def rjecnik(jezik_skupina_sort):
 
     jezik = splitani_string[0]
     skupina = splitani_string[1]
-    sort = splitani_string[2]
-   
-    
+    sort = splitani_string[2]    
     
     if skupina == 'moja_druzina':
         rijeci = [item for item in retci if item['skupina'] == 'moja družina']
@@ -50,7 +48,7 @@ def rjecnik(jezik_skupina_sort):
     # funkcija za generiranje ključeva sortiranja
     def custom_sort_key_hr(podatak):
         # definiranje lokalnih postavki za hrvatski jezik
-        locale.setlocale(locale.LC_ALL, 'hr_HR.UTF-8')
+        locale.setlocale(locale.LC_ALL, 'hr_HR.UTF-8')    
         return locale.strxfrm(podatak['hrvatski'])
 
     # funkcija za generiranje ključeva sortiranja
@@ -60,19 +58,22 @@ def rjecnik(jezik_skupina_sort):
         return locale.strxfrm(podatak['slovenski'])
 
     def custom_sort_key(podatak, jezik):
+        
         if jezik == 'hrvatski':
-            return custom_sort_key_hr(podatak)
-        elif jezik == 'slovenski':
-            return custom_sort_key_sl(podatak)
+            locale.setlocale(locale.LC_ALL, 'hr_HR.UTF-8')    
+            return locale.strxfrm(podatak['hrvatski'])          
+            #return custom_sort_key_hr(podatak)            
         else:
-            raise ValueError("Nepodržani način sortiranja: {}".format(jezik))
+            locale.setlocale(locale.LC_ALL, 'sl_SL.UTF-8')
+            return locale.strxfrm(podatak['slovenski'])
+            #return custom_sort_key_sl(podatak)
+        #else:
+            #raise ValueError("Nepodržani način sortiranja: {}".format(jezik))
 
     if sort == 'sortiraj':
         # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
-        sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik)) 
+        sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
     else:
         sortirane_rijeci = rijeci
-    
-    #print(skupina)
 
     return render_template('rijeci_sve.html', retci=sortirane_rijeci, linkovi=linkovi, skupina=skupina)
