@@ -1,8 +1,12 @@
+import os
 from flask import Blueprint, render_template
 import locale
 
 #from metode.sortiranje import *
 from metode.sheets import plahte
+
+# Postavljanje varijable okoline LANG na hr_HR.UTF-8
+os.environ['LANG'] = 'hr_HR.UTF-8'
 
 rijeci = Blueprint('rijeci', __name__,
                    template_folder='templates')
