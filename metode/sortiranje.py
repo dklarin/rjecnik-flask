@@ -19,3 +19,4 @@ def custom_sort_key(podatak, jezik):
         return custom_sort_key_sl(podatak)
     else:
         raise ValueError("Nepodržani način sortiranja: {}".format(jezik))
+
