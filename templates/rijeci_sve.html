@@ -1,0 +1,104 @@
+<!-- INCLUDE -->
+
+{% extends "base.html" %}
+
+<style>
+    thead th {
+        text-align: center;
+    }
+
+
+
+    tr {
+        cursor: pointer;
+    }
+
+
+
+    .prst {
+        cursor: pointer;
+        cursor: -webkit-pointer;
+        cursor: -moz-pointer;
+        cursor: -o-pointer;
+        cursor: -ms-pointer;
+    }
+</style>
+
+{% block content %}
+
+<div class="container">
+
+    <!--STUPAC 1-->
+    <div class="col-md-2 sidenav">
+
+        <div class="lijevo">
+            <label for="exampleDropdown">Odaberi skupinu:</label>
+        </div>
+        <div class="dropdown">
+            <select class="form-control" id="odabir">
+                <option selected>Otvori za odabir</option>
+                {%for apa in linkovi%}
+                <option value="{{apa.link}}">{{apa.skupina}}</option>
+                {%endfor%}
+            </select>
+        </div>
+
+        <br>
+
+    </div>
+
+    <!--STUPAC 2-->
+    <div class="col-md-8 text-center">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Redni broj</th>
+                    <th onclick="window.location.href = '/rijeci/slovenski:{{skupina}}:sort';">
+                        Slovenski
+                    </th>
+                    <th onclick="window.location.href = '/rijeci/hrvatski:{{skupina}}:sort';">
+                        Hrvatski</th>
+                    <th>Skupina</th>
+                </tr>
+            </thead>
+            <tbody class="lijevo">
+                {%for lis in retci%}
+                <tr>
+                    <td>
+                        <div>{{lis.redni_broj}}</div>
+                    </td>
+                    <td>
+                        <div>{{lis.slovenski}}</div>
+                    </td>
+                    <td>
+                        <div>{{lis.hrvatski}}</div>
+                    </td>
+                    <td>
+                        <div>{{lis.skupina}}</div>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+        <br>
+    </div>
+
+    <!--STUPAC 3-->
+    <div class="col-md-2 sidenav"></div>
+
+</div>
+
+
+
+<script>
+    document.getElementById("odabir").addEventListener("change", function () {
+        var selectedOption = this.options[this.selectedIndex];
+        if (selectedOption.value) {
+            window.location.href = selectedOption.value;
+        }
+    });
+
+</script>
+
+{% endblock %}
