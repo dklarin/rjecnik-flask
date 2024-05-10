@@ -44,7 +44,7 @@ def rjecnik(jezik_skupina_sort):
         print('Ne postoji takva riječ!')
         return render_template('404.html'), 404
 
-    if sort == 'sort':
+    if sort == 'sortiraj':
         # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
         sortirane_rijeci = sorted(retci, key=lambda x: custom_sort_key(x, jezik)) 
     else:
