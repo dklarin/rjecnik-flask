@@ -1,12 +1,8 @@
 import os
 from flask import Blueprint, render_template
-import locale
 
 from metode.sortiranje import *
 from metode.sheets import plahte
-
-# Postavljanje varijable okoline LANG na hr_HR.UTF-8
-os.environ['LANG'] = 'hr_HR.UTF-8'
 
 rijeci = Blueprint('rijeci', __name__,
                    template_folder='templates')
@@ -50,12 +46,10 @@ def rjecnik(jezik_skupina_sort):
         return render_template('404.html'), 404   
 
     if jezik == 'hrvatski' and sort == 'sortiraj':
-        # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
-        #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
+        # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje     
         sortirane_rijeci = sorted(rijeci, key=lambda kljuc: croatian_sort(kljuc['hrvatski']))
     elif jezik == 'slovenski' and sort == 'sortiraj':
-        # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
-        #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
+        # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje      
         sortirane_rijeci = sorted(rijeci, key=lambda kljuc: slovenian_sort(kljuc['slovenski']))
     else:
         sortirane_rijeci = rijeci

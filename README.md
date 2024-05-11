@@ -21,4 +21,6 @@ slovenski:solski_pribor
 
 ## 11.5.2024
 
+### Popravak 5: Sortiranje slovenskih i hrvatskih riječi
+
 Potreban popravak osvježavanja: footera
