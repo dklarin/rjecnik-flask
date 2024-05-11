@@ -52,7 +52,7 @@ def rjecnik(jezik_skupina_sort):
     if sort == 'sortiraj':
         # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
         #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
-        sortirane_rijeci = sorted(retci, key=lambda kljuc: croatian_sort(kljuc['hrvatski']))
+        sortirane_rijeci = sorted(rijeci, key=lambda kljuc: croatian_sort(kljuc['hrvatski']))
     else:
         sortirane_rijeci = rijeci
 
