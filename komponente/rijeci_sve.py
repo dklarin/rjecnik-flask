@@ -49,10 +49,14 @@ def rjecnik(jezik_skupina_sort):
         print('Ne postoji takva riječ!')
         return render_template('404.html'), 404   
 
-    if sort == 'sortiraj':
+    if jezik == 'hrvatski' and sort == 'sortiraj':
         # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
         #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
         sortirane_rijeci = sorted(rijeci, key=lambda kljuc: croatian_sort(kljuc['hrvatski']))
+    elif jezik == 'slovenski' and sort == 'sortiraj':
+        # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
+        #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
+        sortirane_rijeci = sorted(rijeci, key=lambda kljuc: slovenian_sort(kljuc['slovenski']))
     else:
         sortirane_rijeci = rijeci
 
