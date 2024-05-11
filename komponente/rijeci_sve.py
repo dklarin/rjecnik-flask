@@ -2,7 +2,7 @@ import os
 from flask import Blueprint, render_template
 import locale
 
-#from metode.sortiranje import *
+from metode.sortiranje import *
 from metode.sheets import plahte
 
 # Postavljanje varijable okoline LANG na hr_HR.UTF-8
@@ -47,36 +47,12 @@ def rjecnik(jezik_skupina_sort):
         rijeci = retci         
     else:
         print('Ne postoji takva riječ!')
-        return render_template('404.html'), 404
-    
-    # funkcija za generiranje ključeva sortiranja
-    def custom_sort_key_hr(podatak):
-        # definiranje lokalnih postavki za hrvatski jezik
-        locale.setlocale(locale.LC_ALL, 'hr_HR.UTF-8')    
-        return locale.strxfrm(podatak['hrvatski'])
-
-    # funkcija za generiranje ključeva sortiranja
-    def custom_sort_key_sl(podatak):
-        # definiranje lokalnih postavki za slovenski jezik
-        locale.setlocale(locale.LC_ALL, 'sl_SL.UTF-8')
-        return locale.strxfrm(podatak['slovenski'])
-
-    def custom_sort_key(podatak, jezik):
-        
-        if jezik == 'hrvatski':
-            locale.setlocale(locale.LC_ALL, 'hr_HR.UTF-8')    
-            return locale.strxfrm(podatak['hrvatski'])          
-            #return custom_sort_key_hr(podatak)            
-        else:
-            locale.setlocale(locale.LC_ALL, 'sl_SL.UTF-8')
-            return locale.strxfrm(podatak['slovenski'])
-            #return custom_sort_key_sl(podatak)
-        #else:
-            #raise ValueError("Nepodržani način sortiranja: {}".format(jezik))
+        return render_template('404.html'), 404   
 
     if sort == 'sortiraj':
         # sortiranje niza riječi koristeći prilagođenu funkciju za sortiranje
-        sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
+        #sortirane_rijeci = sorted(rijeci, key=lambda x: custom_sort_key(x, jezik))       
+        sortirane_rijeci = sorted(retci, key=lambda kljuc: croatian_sort(kljuc['hrvatski']))
     else:
         sortirane_rijeci = rijeci
 
