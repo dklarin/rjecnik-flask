@@ -23,4 +23,4 @@ slovenski:solski_pribor
 
 ### Popravak 5: Sortiranje slovenskih i hrvatskih riječi
 
-Potreban popravak osvježavanja: footera
+Kako oživjeti stranicu
