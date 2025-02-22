@@ -13,6 +13,11 @@ def index():
     name = 'Baltazar'
     return render_template('index.html', name=name)
 
+@app.route('/tecaj-2025')
+def tecaj():
+    name = 'Baltazar'
+    return render_template('tecaj.html', name=name)
+
 # error pages
 @app.errorhandler(404)
 def page_not_found(e):
